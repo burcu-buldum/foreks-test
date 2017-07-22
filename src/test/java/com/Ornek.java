@@ -1,6 +1,7 @@
 package com;
 
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -64,7 +65,10 @@ public class Ornek {
 
         String detayAdi = driver.findElement(By.xpath("//*[@id=\"contentProDetail\"]/div/div[3]/div[2]/div[1]/div/h1")).getText();
 
-        //assertThat(urunAdi, is.);
+        assert urunAdi.equals(detayAdi);
+
+        Shutterbug.shootPage(driver).save(System.getProperty("user.dir") + "/src/ekrangoruntuleri");
+
 
     }
 
