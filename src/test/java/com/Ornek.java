@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.lang.management.BufferPoolMXBean;
 
@@ -31,23 +33,28 @@ public class Ornek {
         //N11 e giriş
         driver.get("http://www.n11.com/");
 
-        /*
         // giriş butonuna basıyoruz
         driver.findElement(By.cssSelector(".btnSignIn")).click();
 
         // facebook butonuna basıyoruz.
         driver.findElement(By.cssSelector(".facebookBtn")).click();
 
+        Thread.sleep(10000);
+
         // açılan popup a geçiyoruz
         driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
 
         // facebook kullanıcıadı ve şifreyi giriyoruz
-        driver.findElement(By.id("email")).sendKeys("foreksdeneme@gmail.com");
+        driver.findElement(By.id("email")).sendKeys("foreksodev@gmail.com");
         driver.findElement(By.id("pass")).sendKeys("foreks909090");
 
         // giriş yap butonuna tıklıyoruz
         driver.findElement(By.id("u_0_2")).click();
-        */
+
+        // tekrar ana windowa dönüyoruz
+        driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
+
+        Thread.sleep(1000);
 
         // ürün arama alanı
         driver.findElement(By.id("searchData")).sendKeys("iphone 7");
@@ -69,6 +76,13 @@ public class Ornek {
 
         Shutterbug.shootPage(driver).save(System.getProperty("user.dir") + "/src/ekrangoruntuleri");
 
+        // menuyu açıyoruz
+        Actions builder = new Actions(driver);
+        WebElement element = driver.findElement(By.cssSelector(".myAccountHolder"));
+        builder.moveToElement(element).build().perform();
+
+        // çıkış yapıyoruz
+        driver.findElement(By.cssSelector(".logoutBtn")).click();
 
     }
 
